@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Resume</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,300,700|Vollkorn:400italic,400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+<body>
+
+  <div class="resume-container" ng-app="resume">
+  <article itemscope itemtype="http://schema.org/Person">
+    <header role="banner" ng-controller="personCtrl">
+      <h1 itemprop="name">{{ personInfo.name }}</h1>
+      <h2 itemprop="description">{{ personInfo.description }}</h2>
+      <address class="contact-info">
+        <a itemprop="telephone" target="_blank" class="phone-number">{{ personInfo.phone.text }}</a>
+        <a href="{{ personInfo.email.url }}" itemprop="email" target="_blank" class="email-address">{{ personInfo.email.text }}</a>
+        <a href="{{ social.url }}" itemprop="url" target="_blank" class="icon" ng-repeat="social in personInfo.social"><i class="fa {{ social.icon }}"></i></a>
+      </address>
+    </header>
+    <section class="education-section" ng-controller="educationCtrl">
+      <h1>Education</h1>
+      <ul>
+        <li ng-repeat="school in schools">
+          <h2>{{ school.program }}</h2>
+          <div itemscope itemtype="http://schema.org/School" class="school-name-location-date-container">
+            <span itemprop="name">{{ school.name }}</span>,
+            <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="address-container">
+			  <span class="school-location">{{ school.city }}</span>,
+			  <span class="state-abbr">{{ school.state }}</span>
+            </div>
+			<span class="school-dates">({{ school.dates }}) - </span>
+			<span class="cgpa">{{ school.cgpa }}</span>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section class="languages-section" ng-controller="languagesCtrl">
+      <h1>Languages</h1>
+      <ul class="languages-list">
+        <li class="language-tool-column" ng-repeat="language in languages">
+          <h2 class="language-name">{{ language.name }}</h2>
+          <ul class="secondary-languages-list">
+            <li ng-repeat="type in language.types">{{ type }}</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <section class="tools-section" ng-controller="toolsCtrl">
+      <h1>Tools/ Frameworks</h1>
+      <ul class="tools-list">
+        <li class="language-tool-column" ng-repeat="tool in tools">
+          <h2 class="tool-type">{{ tool.name }}</h2>
+          <ul class="secondary-tools-list">
+            <li ng-repeat="type in tool.types">{{ type }}</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <section class="experience-section" ng-controller="organizationCtrl">
+      <h1>Professional Work Experience</h1>
+      <ul class="work-experience-list">
+        <li ng-repeat="organization in organizations">
+          <div class="organization-heading" itemscope itemtype="http://schema.org/Organization">
+            <a href="{{ organization.url }}" itemprop="sameAs" title="{{ organization.name }}">
+              <h2 itemprop="name" class="organization-name">{{ organization.name }}</h2></a>
+          </div>
+          <span class="organization-dates">{{ organization.dates }}</span>
+          <div ng-repeat="position in organization.positions">
+            <h3 class="position-title">{{ position.title }}</h3>
+            <ul class="tertiary-work-experience-list">
+              <li ng-repeat="responsibility in position.responsibilities">{{ responsibility }}</li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section class="projects-conferences-section" ng-controller="projectsCtrl">
+      <h1>Projects</h1>
+      <div class="projects-conferences-container" ng-repeat="project in projects">
+        <a href="{{ project.url }}" target="_blank">
+          <h2 class="projects-name">{{ project.name }}</h2>
+        </a>
+        <p class="projects-description">{{ project.description }}</p>
+      </div>
+    </section>
+  </article>
+</div>
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js'></script>
+
+  
+
+    <script  src="js/index.js"></script>
+
+
+
+
+</body>
+
+</html>
