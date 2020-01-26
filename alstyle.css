@@ -1,0 +1,44 @@
+select{
+ /*-webkit-appearance: none; 
+ -moz-appearance: none;  
+ border: 0 !important;*/  
+
+ /*color: #fff;*/
+ /*-webkit-border-radius: 5px;*/
+ border-radius: 5px;
+ font-size: 14px;
+ padding: 10px;
+ width: 160px;
+ /*cursor: pointer;*/
+
+ /*background: #0d98e8 url(drop-down-arrow.png) no-repeat right center;
+ background-size: 40px 37px;*/ /*TO ACCOUNT FOR @2X IMAGE FOR RETINA */
+}
+button{
+	 border-radius: 5px;
+ font-size: 14px;
+ padding: 8px;
+ width: 100px;
+ /*background: #ff99dd;*/
+}
+table{
+	border-collapse:separate;
+    border-spacing:5px 10px;
+}
+#outer{
+	margin: auto;
+	width: 50%;
+	background:  #ffffb3;
+	border: 2px dotted black;
+    border-radius: 12px;
+}
+#time{
+		margin: auto;
+	width: 20%;
+	background:   #ffff33;
+	border: 2px dashed black;
+    border-radius: 12px;
+}
+p{
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}

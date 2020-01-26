@@ -1,0 +1,292 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="alstyle.css"> 
+<script>
+var t;
+var audio = new Audio('alarmtone.mp3');
+function updateClock() {
+	//document.getElementById("playing").style.visibility="hidden";
+	var now = new Date();
+    var time = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds(); 
+    document.getElementById('current').innerHTML = time;
+    setTimeout(updateClock, 1000);
+}
+/*function displayStop(){
+	
+}*/
+/*function stopAlarm(){
+	while(true)
+	{
+		if(document.getElementById("playing").clicked==)
+			continue;
+		else
+			break;
+	}
+	var audio = new Audio('alarmtone.mp3');
+	audio.pause();
+	document.getElementById("playing").addEventListener("click", function(){
+    audio.pause();});
+}*/
+function check()
+{
+	//var t=0;
+	//t=setTimeout(check, 1000);
+	var now= new Date();
+	//var ctr=0;
+	var h=document.getElementById('hour').value;
+	var m=document.getElementById('minutes').value;
+	//while(ctr==0){
+		if((now.getHours()==h)&&(now.getMinutes()==m)){
+			clearInterval(t);
+			return displayStop();
+			function displayStop(){
+			//clearTimeout(t);
+				//ctr=1;
+				audio.loop=true;
+				audio.play();
+				document.getElementById("playing").style.visibility="visible";
+				document.getElementById("playing").addEventListener("click", function(){
+    audio.pause();window.location.reload();});
+				//stopAlarm();
+				
+				/*while(true)
+				{
+					if(document.getElementById("playing").clicked==false)
+						continue;
+					else
+						break;
+				}*/
+				//break;
+				//t=0;
+			}
+			//displayStop();
+			//document.getElementById('display').innerHTML="Alarm tone is playing";
+		}
+		/*else
+			continue;*/
+	//}
+}
+/*function validate(){
+	alert("Select hour to set alarm");
+	document.getElementById('hour').style.borderColor = "red";
+	document.getElementById('hour').focus();
+}*/
+function setAlarm(){
+	//alert("hello!");
+	var msg="Alarm is set for ";
+	var ha=Number(document.getElementById('hour').value);
+	var ma=Number(document.getElementById('minutes').value);
+	//while(!((ha>=0)&&(ha<=23)&&(ma>=0)&&(ma<=59))){
+		if((ha>=0)&&(ha<=23)&&(ma>=0)&&(ma<=59)){
+			document.getElementById('hour').style.borderColor="black";
+			document.getElementById('minutes').style.borderColor="black";
+			var alTime="Alarm at "+ha+":"+ma;
+			document.getElementById('alarmtime').innerHTML=alTime;
+			var now=new Date();
+			var hc=now.getHours();
+			var mc=now.getMinutes();
+			var nh=0,nm=0;
+			if(hc>ha){
+				nh=24-hc;
+				//document.getElementById('display').innerHTML=nh;
+				nh=nh+ha;
+				if(mc>ma){
+					nh--;
+					nm=60-mc;
+					nm=nm+ma;
+				}
+				else
+					nm=ma-mc;
+				//msg=msg+nh+" hours "+nm+" minutes from now ";
+				//document.getElementById('alarmmsg').innerHTML=msg;
+			}
+			else if(hc==ha)
+			{
+				if(mc>ma)
+				{
+					nh=24-hc;
+					nh=nh+ha;
+					if(mc>ma){
+						nh--;
+						nm=60-mc;
+						nm=nm+ma;
+					}
+					else{
+						nm=ma-mc;
+					}
+				}
+				else{
+					nh=0;
+					nm=ma-mc;
+				}
+			}
+			else{
+				nh=ha-hc;
+				if(mc>ma){
+					nh--;
+					nm=60-mc;
+					nm=nm+ma;
+				}
+				else{
+					nm=ma-mc;
+				}
+			}
+			msg=msg+nh+" hours "+nm+" minutes from now";
+			document.getElementById("alarmmsg").innerHTML = msg;
+			setTimeout(function(){
+			document.getElementById("alarmmsg").innerHTML = '';
+			}, 3000);
+			t=setInterval(check,1000);
+			//break;
+		}
+		else{
+			alert("Please select the time to set the alarm");
+			if(!((ha>=0)&&(ha<=23))){
+				
+				document.getElementById('hour').style.borderColor = "red";
+				if((ma>=0)&&(ma<=59))
+					document.getElementById('minutes').style.borderColor="black";
+				//document.getElementById('hour').focus();
+				//continue;
+			}
+			if(!((ma>=0)&&(ma<=59))){
+				//alert("Select minutes to set alarm");
+				
+				document.getElementById('minutes').style.borderColor = "red";
+				if((ha>=0)&&(ha<=23))
+					document.getElementById('hour').style.borderColor="black";
+			}
+		}
+	//}
+}
+function resetScreen(){
+	//alert("hi");
+	window.location.reload();
+	
+}
+</script>
+</head>
+<body onload="updateClock()">
+<br><br><br><br><br><br>
+<div id="outer" align="center">
+<div align="center">
+<br>
+<div id="time">
+<p id="current"> </p>
+</div>
+<p id="set"><b>SET ALARM</b></p>
+</div>
+<!-- <input type="number" name="hour" id="hour" min="0" max="23"> -->
+<table align="center" cellspacing="0px">
+<tr>
+<td><select id="hour">
+  <option selected='selected' disabled='disabled'>--Select hour--</option>
+  <option value="0">0</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+</select>
+</td>
+<td>
+<select id="minutes">
+  <option selected='selected' disabled='disabled'>--Select minutes--</option>
+  <option value="0">0</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+  <option value="24">24</option>
+  <option value="25">25</option>
+  <option value="26">26</option>
+  <option value="27">27</option>
+  <option value="28">28</option>
+  <option value="29">29</option>
+  <option value="30">30</option>
+  <option value="31">31</option>
+  <option value="32">32</option>
+  <option value="33">33</option>
+  <option value="34">34</option>
+  <option value="35">35</option>
+  <option value="36">36</option>
+  <option value="37">37</option>
+  <option value="38">38</option>
+  <option value="39">39</option>
+  <option value="40">40</option>
+  <option value="41">41</option>
+  <option value="42">42</option>
+  <option value="43">43</option>
+  <option value="44">44</option>
+  <option value="45">45</option>
+  <option value="46">46</option>
+  <option value="47">47</option>
+  <option value="48">48</option>
+  <option value="49">49</option>
+  <option value="50">50</option>
+  <option value="51">51</option>
+  <option value="52">52</option>
+  <option value="53">53</option>
+  <option value="54">54</option>
+  <option value="55">55</option>
+  <option value="56">56</option>
+  <option value="57">57</option>
+  <option value="58">58</option>
+  <option value="59">59</option>
+</select>
+</td>
+</tr>
+<tr>
+<td style="text-align:center">
+<button type="submit" id="alarm" onclick="setAlarm()">Set Alarm!</button>
+</td>
+<td style="text-align:center">
+<button type="submit" id="reset" onclick="resetScreen()">Reset</button>
+</td>
+</tr>
+<tr>
+<td style="text-align:center"><p id="alarmtime"></p></td>
+<td style="text-align:center"><button style="visibility: hidden;" type="submit" id="playing" onclick="stopAlarm()">Stop</button></td>
+</tr>
+</table>
+<p id="alarmmsg"></p>
+</div>
+</body>
+</html>
